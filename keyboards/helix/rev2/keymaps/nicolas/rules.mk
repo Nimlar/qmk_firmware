@@ -6,7 +6,7 @@
 BOOTMAGIC_ENABLE = no       # Virtual DIP switch configuration(+1000)
 MOUSEKEY_ENABLE = no       # Mouse keys(+4700)
 EXTRAKEY_ENABLE = no       # Audio control and System control(+450)
-CONSOLE_ENABLE = yes         # Console for debug(+400)
+CONSOLE_ENABLE = no         # Console for debug(+400)
 COMMAND_ENABLE = no        # Commands for debug and configuration
 NKRO_ENABLE = no            # Nkey Rollover - if this doesn't work, see here: https://github.com/tmk/tmk_keyboard/wiki/FAQ#nkro-doesnt-work
 BACKLIGHT_ENABLE = no      # Enable keyboard backlight functionality
@@ -30,11 +30,12 @@ endef
 # you can edit follows 7 Variables
 #  jp: 以下の7つの変数を必要に応じて編集します。
 HELIX_ROWS = 5              # Helix Rows is 4 or 5
-OLED_ENABLE = no            # OLED_ENABLE
+OLED_ENABLE = yes           # OLED_ENABLE
 LOCAL_GLCDFONT = no         # use each keymaps "helixfont.h" insted of "common/glcdfont.c"
-LED_BACK_ENABLE = yes        # LED backlight (Enable WS2812 RGB underlight.)
+LED_BACK_ENABLE = no       # LED backlight (Enable WS2812 RGB underlight.)
 LED_UNDERGLOW_ENABLE = no   # LED underglow (Enable WS2812 RGB underlight.)
-LED_ANIMATIONS = yes        # LED animations
+CONF_LED_MATRIX_ENABLE = yes
+LED_ANIMATIONS = no        # LED animations
 IOS_DEVICE_ENABLE = no      # connect to IOS device (iPad,iPhone)
 Link_Time_Optimization = no # if firmware size over limit, try this option
 
@@ -91,6 +92,10 @@ ifeq ($(strip $(LED_BACK_ENABLE)), yes)
   endif
 else ifeq ($(strip $(LED_UNDERGLOW_ENABLE)), yes)
   RGBLIGHT_ENABLE = yes
+else ifeq ($(strip $(CONF_LED_MATRIX_ENABLE)), yes)
+  RGB_MATRIX_ENABLE = WS2812
+  OPT_DEFS += -DRGBLED_MATRIX
+  
 else
   RGBLIGHT_ENABLE = no
 endif
