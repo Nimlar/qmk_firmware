@@ -31,6 +31,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "matrix.h"
 #include "split_util.h"
 #include "pro_micro.h"
+#include "rgb_matrix.h"
 
 #ifdef USE_MATRIX_I2C
 #  include "i2c.h"
@@ -115,6 +116,8 @@ void matrix_init(void)
     is_master = has_usb();
 
     matrix_init_quantum();
+
+    rgb_matrix_driver.set_color_all(200,0,0);
 }
 
 uint8_t _matrix_scan(void)
