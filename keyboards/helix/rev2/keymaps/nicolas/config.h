@@ -36,7 +36,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
    //#define RGBLIGHT_EFFECT_ALTERNATING
 #endif
 
-#define RGB_MATRIX_KEYPRESSES
+//#define RGB_MATRIX_KEYPRESSES
+#define RGB_MATRIX_KEYRELEASES
 
 #define DISABLE_RGB_MATRIX_ALPHAS_MODS
 #define DISABLE_RGB_MATRIX_GRADIENT_UP_DOWN
