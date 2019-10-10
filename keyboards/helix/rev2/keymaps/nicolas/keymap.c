@@ -315,11 +315,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         break;
       //led operations - RGB mode change now updates the RGB_current_mode to allow the right RGB mode to be set after reactive keys are released
     case RGB_MOD:
-      #ifdef RGBLIGHT_ENABLE
+      #if defined(RGBLIGHT_ENABLE)
         if (record->event.pressed) {
           rgblight_mode(RGB_current_mode);
           rgblight_step();
           RGB_current_mode = rgblight_config.mode;
+        }
+      #elif defined(WS2812)
+        if (record->event.pressed) {
+          rgblight_step();
         }
       #endif
       return false;
@@ -349,11 +353,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       return false;
       break;
     case RGBRST:
-      #ifdef RGBLIGHT_ENABLE
+      #if defined(RGBLIGHT_ENABLE)
         if (record->event.pressed) {
           eeconfig_update_rgblight_default();
           rgblight_enable();
           RGB_current_mode = rgblight_config.mode;
+        }
+      #elif defined(WS2812)
+        if (record->event.pressed) {
+          eeconfig_update_rgb_matrix_default();
         }
       #endif
       break;
