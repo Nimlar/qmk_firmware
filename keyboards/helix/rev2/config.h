@@ -90,7 +90,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Helix keyboard RGB LED support
 //#define RGBLIGHT_ANIMATIONS : see ./rules.mk: LED_ANIMATIONS = yes or no
 //    see ./rules.mk: LED_BACK_ENABLE or LED_UNDERGLOW_ENABLE set yes
-#ifdef RGBLED_BACK
+#if defined(RGBLED_BACK) || defined(RGBLED_MATRIX)
   #if MATRIX_ROWS == 8 // HELIX_ROWS == 4
     #define RGBLED_NUM 25
   #else
@@ -99,6 +99,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #else
   #define RGBLED_NUM 6
 #endif
+
+#define DRIVER_LED_TOTAL (RGBLED_NUM)
 
 #ifndef IOS_DEVICE_ENABLE
   #if RGBLED_NUM <= 6
