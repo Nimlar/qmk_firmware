@@ -25,18 +25,17 @@ extern uint8_t is_master;
 // Layer names don't all need to be of the same length, obviously, and you can also skip them
 // entirely and just use numbers.
 enum layer_number {
-    _QWERTY = 0,
+    _AZERTY = 0,
     _LOWER,
     _RAISE,
     _ADJUST
 };
 
 enum custom_keycodes {
-  QWERTY = SAFE_RANGE,
+  AZERTY = SAFE_RANGE,
   LOWER,
   RAISE,
   ADJUST,
-  BACKLIT,
   EISU,
   KANA,
   RGBRST
@@ -52,45 +51,46 @@ enum macro_keycodes {
 #if HELIX_ROWS == 5
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
-  /* Qwerty
+  /* Azerty
    * ,-----------------------------------------.             ,-----------------------------------------.
    * |   `  |   1  |   2  |   3  |   4  |   5  |             |   6  |   7  |   8  |   9  |   0  | Del  |
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * | Tab  |   Q  |   W  |   E  |   R  |   T  |             |   Y  |   U  |   I  |   O  |   P  | Bksp |
+   * | Tab  |   A  |   Z  |   E  |   R  |   T  |             |   Y  |   U  |   I  |   O  |   P  | Bksp |
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * | Ctrl |   A  |   S  |   D  |   F  |   G  |             |   H  |   J  |   K  |   L  |   ;  |  '   |
+   * | Ctrl |   Q  |   S  |   D  |   F  |   G  |             |   H  |   J  |   K  |   L  |   M  |  ù   |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * | Shift|   Z  |   X  |   C  |   V  |   B  |   [  |   ]  |   N  |   M  |   ,  |   .  |   /  |Shift |
+   * | Shift|   W  |   X  |   C  |   V  |   B  |   (  |   )  |   N  |  ,   |   ;  |   :  |   !  |Shift |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * |Adjust| Esc  | Alt  | EISU | GUI  |Enter |Lower |Raise |Space | KANA | Left | Down |  Up  |Right |
+   * |Adjust| Esc  | Alt  | EISU | GUI  |Enter |Lower |Raise |Space |      | Left | Down |  Up  |Right |
    * `-------------------------------------------------------------------------------------------------'
    */
-  [_QWERTY] = LAYOUT( \
+  [_AZERTY] = LAYOUT( \
       KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                      KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_DEL, \
       KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                      KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC, \
       KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                      KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, \
-      KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,   KC_LBRC, KC_RBRC,  KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT , \
+      KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,   FR_LPRN, FR_RPRN,  KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT , \
       ADJUST,  KC_ESC,  KC_LALT, EISU, KC_LGUI,    KC_ENT,   LOWER,  RAISE,   KC_SPC,  KANA,    KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT \
       ),
 
   /* Lower
    * ,-----------------------------------------.             ,-----------------------------------------.
-   * |   ~  |   !  |   @  |   #  |   $  |   %  |             |   ^  |   &  |   *  |   (  |   )  |      |
+   * |      |   &  |   é  |   "  |   '  |   (  |             |   -  |   è  |   _  |   ç  |   à  |      |
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
    * |   ~  |   !  |   @  |   #  |   $  |   %  |             |   ^  |   &  |   *  |   (  |   )  |      |
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
    * |      |  F1  |  F2  |  F3  |  F4  |  F5  |             |  F6  |   _  |   +  |   {  |   }  |  |   |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * |      |  F7  |  F8  |  F9  |  F10 |  F11 |  (   |   )  |  F12 |      |      | Home | End  |      |
+   * |      |  F7  |  F8  |  F9  |  F10 |  F11 |  [   |   ]  |  F12 |      |      | Home | End  |      |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
    * |      |      |      |      |      |      |      |      |      |      | Next | Vol- | Vol+ | Play |
    * `-------------------------------------------------------------------------------------------------'
    */
   [_LOWER] = LAYOUT( \
+      _______,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                      KC_6,    KC_7,    KC_8,    KC_9,    KC_0,   _______, \
       KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                   KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, _______, \
       KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                   KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, _______, \
       _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                     KC_F6,   KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE, \
-      _______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_LPRN, KC_RPRN, KC_F12,  _______, _______, KC_HOME, KC_END,  _______, \
+      _______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  FR_LBRC, FR_RBRC, KC_F12,  _______, _______, KC_HOME, KC_END,  _______, \
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY \
       ),
 
@@ -102,7 +102,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
    * |      |  F1  |  F2  |  F3  |  F4  |  F5  |             |  F6  |   -  |   =  |   [  |   ]  |  \   |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
-   * |      |  F7  |  F8  |  F9  |  F10 |  F11 |      |      |  F12 |      |      |PageDn|PageUp|      |
+   * |      |  F7  |  F8  |  F9  |  F10 |  F11 |   {  |  }   |  F12 |      |      |PageDn|PageUp|      |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
    * |      |      |      |      |      |      |      |      |      |      | Next | Vol- | Vol+ | Play |
    * `-------------------------------------------------------------------------------------------------'
@@ -111,7 +111,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                      KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC, \
       KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                      KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_DEL, \
       _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                     KC_F6,   KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_BSLS, \
-      _______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  _______, _______, KC_F12,  _______, _______, KC_PGDN, KC_PGUP, _______, \
+      _______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  FR_LCBR, FR_RCBR, KC_F12,  _______, _______, KC_PGDN, KC_PGUP, _______, \
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY \
       ),
 
@@ -121,7 +121,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
    * |      | Reset|RGBRST|      |      |      |             |      |      |      |      |      |  Del |
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * |      |      |      |Aud on|Audoff| Mac  |             | Win  |Qwerty|      |      |      |      |
+   * |      |      |      |Aud on|Audoff| Mac  |             | Win  |Azerty|      |      |      |      |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
    * |      |      |      |      |      |      |      |      |      |      |RGB ON| HUE+ | SAT+ | VAL+ |
    * |------+------+------+------+------+------+------+------+------+------+------+------+------+------|
@@ -131,7 +131,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_ADJUST] =  LAYOUT( \
       KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,                     KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12, \
       _______, RESET,   RGBRST,  _______, _______, _______,                   _______, _______, _______, _______, _______, KC_DEL, \
-      _______, _______, _______, AU_ON,   AU_OFF,  AG_NORM,                   AG_SWAP, QWERTY,  _______, _______, _______, _______, \
+      _______, _______, _______, AU_ON,   AU_OFF,  AG_NORM,                   AG_SWAP, AZERTY,  _______, _______, _______, _______, \
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, \
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD \
       )
@@ -144,7 +144,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 #ifdef AUDIO_ENABLE
 
-float tone_qwerty[][2]     = SONG(QWERTY_SOUND);
+float tone_azerty[][2]     = SONG(QWERTY_SOUND);
 float tone_plover[][2]     = SONG(PLOVER_SOUND);
 float tone_plover_gb[][2]  = SONG(PLOVER_GOODBYE_SOUND);
 float music_scale[][2]     = SONG(MUSIC_SCALE_SOUND);
@@ -173,12 +173,29 @@ void update_tri_layer_RGB(uint8_t layer1, uint8_t layer2, uint8_t layer3) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-    case QWERTY:
+    case KC_1:
+    case KC_2:
+    case KC_3:
+    case KC_4:
+    case KC_5:
+    case KC_6:
+    case KC_7:
+    case KC_8:
+    case KC_9:
+    case KC_0:
+      if (record->event.pressed) {
+        // Do something when pressed
+      } else {
+        // Do something else when release
+      }
+      return true //continue normal process ; //false stop;
+      break;
+    case AZERTY:
       if (record->event.pressed) {
         #ifdef AUDIO_ENABLE
-          PLAY_SONG(tone_qwerty);
+          PLAY_SONG(tone_azerty);
         #endif
-        persistent_default_layer_set(1UL<<_QWERTY);
+        persistent_default_layer_set(1UL<<_AZERTY);
       }
       return false;
       break;
